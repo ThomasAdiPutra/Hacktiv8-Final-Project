@@ -21,3 +21,7 @@ code {
 .font-outline {
   -webkit-text-stroke: 0.5px #777;
 }
+
+.text-webkit-center {
+  text-align: -webkit-center;
+}

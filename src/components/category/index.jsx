@@ -56,11 +56,11 @@ export default function Category({
   if (loading) {
     return (
       <div>
-        <div className="flex justify-between items-center border-b border-gray-600 py-2 mb-3">
-          <p className="bg-gray-700 px-3 py-1 rounded-full animate-pulse h-10 w-64" />
+        <div className="flex justify-between items-center border-b border-gray-600 py-2 mb-3 gap-3">
+          <p className="bg-gray-700 px-3 py-1 rounded-full animate-pulse h-8 md:h-10 w-36 md:w-64" />
           <div className="flex gap-2">
             <button type="button" className="bg-gray-700 px-3 py-1 rounded-md animate-pulse h-7 w-5"> </button>
-            <button type="button" className="bg-gray-700 px-3 py-1 rounded-md animate-pulse h-7 w-16"> </button>
+            <button type="button" className="bg-gray-700 px-3 py-1 rounded-md animate-pulse h-7 w-12 md:w-16"> </button>
             <button type="button" className="bg-gray-700 px-3 py-1 rounded-md animate-pulse h-7 w-5"> </button>
           </div>
         </div>

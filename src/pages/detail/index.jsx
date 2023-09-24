@@ -94,7 +94,7 @@ export default function Detail() {
           ))}
         </div>
 
-        <div className="mt-6 lg:mt-16 flex flex-col gap-8">
+        <div className="mt-6 lg:mt-16 flex flex-col gap-8 text-webkit-center">
           <Category title="Similar Movies" loading />
           <Category title="Recommendation" loading />
         </div>
@@ -221,7 +221,7 @@ export default function Detail() {
           )}
         </div>
 
-        <div className="mt-6 lg:mt-16 flex flex-col gap-8">
+        <div className="mt-6 lg:mt-16 flex flex-col gap-8 text-webkit-center">
           <Category title="Similar Movies" movies={similars.data} loading={similars.isLoading} />
           <Category title="Recommendation" movies={recommendations.data} loading={recommendations.isLoading} />
         </div>

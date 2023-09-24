@@ -32,11 +32,11 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col gap-12">
+    <div className="flex flex-col gap-3 md:gap-12">
       <Carousel movies={nowPlayingMovies.data?.results} loading={nowPlayingMovies.isLoading} />
 
       <div className="flex justify-center w-full">
-        <div className="w-4/5 space-y-12" align="center">
+        <div className="w-4/5 space-y-3 md:space-y-12 text-webkit-center">
           <Category title="Upcoming Movie" link="upcoming" movies={upcomingMovies.data?.results} loading={upcomingMovies.isLoading} />
           <Category title="Top Rated Movie" link="top-rated" movies={topRatedMovies.data?.results} loading={topRatedMovies.isLoading} />
         </div>
@@ -45,7 +45,7 @@ export default function Home() {
       <Carousel movies={nowPlayingMovies2.data?.results} loading={nowPlayingMovies2.isLoading} />
 
       <div className="flex justify-center w-full">
-        <div className="w-4/5 space-y-12" align="center">
+        <div className="w-4/5 space-y-12 text-webkit-center">
           <Category title="Popular Movie" link="popular" movies={popularMovies.data?.results} loading={popularMovies.isLoading} />
         </div>
       </div>
@@ -67,7 +67,7 @@ export default function Home() {
       </div>
 
       <div className="flex justify-center w-full">
-        <div className="w-4/5 space-y-12" align="center">
+        <div className="w-4/5 space-y-12 text-webkit-center">
           <Category title="Trending Movie" link="trending" movies={trendingMovies.data?.results} loading={trendingMovies.isLoading} />
         </div>
       </div>
