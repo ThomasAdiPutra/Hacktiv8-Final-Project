@@ -11,6 +11,9 @@
     "rules": {
         "react/prop-types": "off",
         "react/react-in-jsx-scope": "off",
-        "import/no-extraneous-dependencies": "off"
+        "react/jsx-filename-extension": "off",
+        "react/no-array-index-key": "off",
+        "import/no-extraneous-dependencies": "off",
+        "no-undef": "off"
     }
 }
