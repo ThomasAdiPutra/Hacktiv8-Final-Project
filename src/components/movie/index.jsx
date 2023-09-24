@@ -24,7 +24,7 @@ export default function Movie({
       <div className="relative text-center w-[140px] md:w-[175px] lg:w-[243px]">
         <div
           className={`
-            group-hover:-translate-y-full -mt-1 md:-mt-2 duration-300 text-center text-white z-20 absolute w-full px-2
+            group-hover:-translate-y-full -mt-2 duration-300 text-center text-white z-20 absolute w-full px-2
           `}
         >
           <p className="font-bold text-sm md:text-md lg:text-lg hover:text-orange-400 overflow-clip">{title}</p>
