@@ -2,9 +2,16 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import Movie from '../movie';
 
-export default function Category({ title, movies, loading = true }) {
+export default function Category({
+  title,
+  movies,
+  link = '',
+  loading = true,
+}) {
   const [swiperInstance, setSwiperInstance] = React.useState(null);
 
   const handlePrevSlide = () => {
@@ -80,9 +87,18 @@ export default function Category({ title, movies, loading = true }) {
       <div className="flex justify-between items-center border-b border-gray-600 py-2 mb-3">
         <p className="font-bold text-md xl:text-3xl text-white">{title}</p>
         <div className="flex gap-2">
-          <button type="button" className="text-white text-md xl:text-xl bg-gray-700 px-3 py-1 rounded-md hover:bg-red-600" onClick={handlePrevSlide}>&lt;</button>
-          <button type="button" className="text-white text-md xl:text-xl bg-gray-700 px-3 py-1 rounded-md hover:bg-red-600">See all</button>
-          <button type="button" className="text-white text-md xl:text-xl bg-gray-700 px-3 py-1 rounded-md hover:bg-red-600" onClick={handleNextSlide}>&gt;</button>
+          <button type="button" className="text-white text-md xl:text-xl bg-gray-700 px-3 py-1 rounded-md hover:bg-red-600" onClick={handlePrevSlide}>
+            <FaArrowLeft />
+          </button>
+          <Link
+            to={link}
+            className="text-white text-md xl:text-xl bg-gray-700 px-3 py-1 rounded-md hover:bg-red-600"
+          >
+            See all
+          </Link>
+          <button type="button" className="text-white text-md xl:text-xl bg-gray-700 px-3 py-1 rounded-md hover:bg-red-600" onClick={handleNextSlide}>
+            <FaArrowRight />
+          </button>
         </div>
       </div>
       <Swiper

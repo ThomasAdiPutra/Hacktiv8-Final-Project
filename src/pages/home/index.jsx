@@ -15,30 +15,30 @@ import {
 } from '../../services/movieService';
 
 export default function Home() {
-  const nowPlayingMovies = useQuery({ queryKey: ['now_playing', 1], queryFn: nowPlayings });
-  const upcomingMovies = useQuery({ queryKey: ['upcoming'], queryFn: upcomings });
-  const popularMovies = useQuery({ queryKey: ['popular'], queryFn: populars });
-  const topRatedMovies = useQuery({ queryKey: ['top_rated'], queryFn: topRateds });
-  const trendingMovies = useQuery({ queryKey: ['trending'], queryFn: trendings });
+  const nowPlayingMovies = useQuery({ queryKey: ['now_playing', 1], queryFn: () => nowPlayings(1) });
+  const upcomingMovies = useQuery({ queryKey: ['upcoming'], queryFn: () => upcomings(1) });
+  const popularMovies = useQuery({ queryKey: ['popular'], queryFn: () => populars(1) });
+  const topRatedMovies = useQuery({ queryKey: ['top_rated'], queryFn: () => topRateds(1) });
+  const trendingMovies = useQuery({ queryKey: ['trending'], queryFn: () => trendings(1) });
   const nowPlayingMovies2 = useQuery({ queryKey: ['now_playing', 2], queryFn: () => nowPlayings(2) });
   const popularMovies2 = useQuery({ queryKey: ['now_playing', 2], queryFn: () => populars(2) });
 
   return (
     <div className="flex flex-col gap-12">
-      <Carousel movies={nowPlayingMovies.data} loading={nowPlayingMovies.isLoading} />
+      <Carousel movies={nowPlayingMovies.data?.results} loading={nowPlayingMovies.isLoading} />
 
       <div className="flex justify-center w-full">
         <div className="w-4/5 space-y-12" align="center">
-          <Category title="Upcoming Movie" movies={upcomingMovies.data} loading={upcomingMovies.isLoading} />
-          <Category title="Top Rated Movie" movies={topRatedMovies.data} loading={topRatedMovies.isLoading} />
+          <Category title="Upcoming Movie" link="upcoming" movies={upcomingMovies.data?.results} loading={upcomingMovies.isLoading} />
+          <Category title="Top Rated Movie" link="top-rated" movies={topRatedMovies.data?.results} loading={topRatedMovies.isLoading} />
         </div>
       </div>
 
-      <Carousel movies={nowPlayingMovies2.data} loading={nowPlayingMovies2.isLoading} />
+      <Carousel movies={nowPlayingMovies2.data?.results} loading={nowPlayingMovies2.isLoading} />
 
       <div className="flex justify-center w-full">
         <div className="w-4/5 space-y-12" align="center">
-          <Category title="Popular Movie" movies={popularMovies.data} loading={popularMovies.isLoading} />
+          <Category title="Popular Movie" link="popular" movies={popularMovies.data?.results} loading={popularMovies.isLoading} />
         </div>
       </div>
 
@@ -51,7 +51,7 @@ export default function Home() {
           </div>
         ) : (
           <img
-            src={`${process.env.REACT_APP_TMDB_IMAGE_BASE_URI}/${popularMovies2.data[2]?.backdrop_path}`}
+            src={`${process.env.REACT_APP_TMDB_IMAGE_BASE_URI}/${popularMovies2.data?.results[2]?.backdrop_path}`}
             className="w-full h-[240px] md:h-[360px] lg:h-[400px] object-fit hover:scale-110 duration-500"
             alt="Banner"
           />
@@ -60,7 +60,7 @@ export default function Home() {
 
       <div className="flex justify-center w-full">
         <div className="w-4/5 space-y-12" align="center">
-          <Category title="Trending Movie" movies={trendingMovies.data} loading={trendingMovies.isLoading} />
+          <Category title="Trending Movie" link="trending" movies={trendingMovies.data?.results} loading={trendingMovies.isLoading} />
         </div>
       </div>
     </div>

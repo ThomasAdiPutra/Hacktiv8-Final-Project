@@ -10,31 +10,31 @@ const axiosInstance = axios.create({
 const nowPlayings = async (page = 1) => {
   const response = await axiosInstance.get(`movie/now_playing?page=${page}`);
   const result = await response.data;
-  return result.results;
+  return result;
 };
 
 const populars = async (page = 1) => {
   const response = await axiosInstance.get(`movie/popular?page=${page}`);
   const result = await response.data;
-  return result.results;
+  return result;
 };
 
 const topRateds = async (page = 1) => {
   const response = await axiosInstance.get(`movie/top_rated?page=${page}`);
   const result = await response.data;
-  return result.results;
+  return result;
 };
 
 const upcomings = async (page = 1) => {
   const response = await axiosInstance.get(`movie/upcoming?page=${page}`);
   const result = await response.data;
-  return result.results;
+  return result;
 };
 
 const trendings = async () => {
   const response = await axiosInstance.get('trending/movie/week');
   const result = await response.data;
-  return result.results;
+  return result;
 };
 
 const getMovieById = async (id) => {
