@@ -45,8 +45,8 @@ export default function Movie({
             ${translateY} duration-300 text-c enter text-white z-20 absolute w-full px-2
           `}
         >
-          <p className="font-bold text-lg hover:text-orange-400 overflow-clip">{title}</p>
-          <p>{date ? date.split('-')[0] : 'Coming Soon'}</p>
+          <p className="font-bold text-sm md:text-md lg:text-lg hover:text-orange-400 overflow-clip">{title}</p>
+          <p className="text-sm md:text-md">{date ? date.split('-')[0] : 'Coming Soon'}</p>
           <Link to={`/${id}/${title.toLowerCase().replaceAll(' ', '-')}`} className="px-3 py-1 mt-1.5 text-sm bg-red-600 rounded-md hover:bg-white hover:text-black">Watch Now!</Link>
         </div>
         <div className="group-hover:-translate-y-36 duration-300 bg-slate-600 blur-2xl h-48 w-[480px] absolute z-10 -mx-16" />

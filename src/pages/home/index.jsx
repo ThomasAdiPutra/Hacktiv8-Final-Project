@@ -2,6 +2,7 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
 import { useQuery } from 'react-query';
+import { useSearchParams } from 'react-router-dom';
 import Category from '../../components/category';
 import Carousel from '../../components/carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
@@ -13,8 +14,11 @@ import {
   trendings,
   upcomings,
 } from '../../services/movieService';
+import Search from '../search';
 
 export default function Home() {
+  const [searchParams] = useSearchParams();
+
   const nowPlayingMovies = useQuery({ queryKey: ['now_playing', 1], queryFn: () => nowPlayings(1) });
   const upcomingMovies = useQuery({ queryKey: ['upcoming'], queryFn: () => upcomings(1) });
   const popularMovies = useQuery({ queryKey: ['popular'], queryFn: () => populars(1) });
@@ -22,6 +26,10 @@ export default function Home() {
   const trendingMovies = useQuery({ queryKey: ['trending'], queryFn: () => trendings(1) });
   const nowPlayingMovies2 = useQuery({ queryKey: ['now_playing', 2], queryFn: () => nowPlayings(2) });
   const popularMovies2 = useQuery({ queryKey: ['now_playing', 2], queryFn: () => populars(2) });
+
+  if (searchParams.get('search')) {
+    return <Search query={searchParams.get('search')} />;
+  }
 
   return (
     <div className="flex flex-col gap-12">
