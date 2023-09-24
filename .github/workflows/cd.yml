@@ -27,4 +27,5 @@ jobs:
             git pull
             yarn
             yarn tailwindcss -i ./src/input.css -o ./public/index.css
+            yarn build
             npx pm2 restart streamo
