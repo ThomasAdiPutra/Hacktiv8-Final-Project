@@ -4,6 +4,7 @@ import Layout from '../layouts';
 import Home from '../pages/home';
 import Detail from '../pages/detail';
 import NotFoundPage from '../pages/error/NotFoundPage';
+import Category from '../pages/category';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,26 @@ const router = createBrowserRouter([
       {
         path: ':id/:title',
         element: <Detail />,
+      },
+      {
+        path: 'now-playing',
+        element: <Category />,
+      },
+      {
+        path: 'popular',
+        element: <Category />,
+      },
+      {
+        path: 'top-rated',
+        element: <Category />,
+      },
+      {
+        path: 'upcoming',
+        element: <Category />,
+      },
+      {
+        path: 'trending',
+        element: <Category />,
       },
     ],
   },
