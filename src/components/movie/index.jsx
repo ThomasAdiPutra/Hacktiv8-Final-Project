@@ -18,35 +18,17 @@ export default function Movie({
     );
   }
 
-  const getTextWidth = (text, font) => {
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-
-    context.font = font || getComputedStyle(document.body).font;
-
-    return context.measureText(text).width;
-  };
-
-  let translateY = 'group-hover:-translate-y-28';
-  if (getTextWidth(title) < 200) {
-    translateY = 'group-hover:-translate-y-[90px]';
-  } else if (getTextWidth(title) > 700) {
-    translateY = 'group-hover:-translate-y-44';
-  } else if (getTextWidth(title) > 400) {
-    translateY = 'group-hover:-translate-y-36';
-  }
-
   return (
     <div className="h-[210px] w-[140px] md:h-[263px] md:w-[175px] lg:h-[365px] lg:w-[243px] min-[2560px]:w-[300px] min-[2560px]:h-[500px] rounded-xl overflow-hidden group">
       <img src={`${process.env.REACT_APP_TMDB_IMAGE_BASE_URI}/${poster}`} className="h-full w-full object-cover z-10 group-hover:scale-125 duration-500" alt={title} />
       <div className="relative text-center w-[140px] md:w-[175px] lg:w-[243px] min-[2560px]:w-[300px]">
         <div
           className={`
-            ${translateY} duration-300 text-c enter text-white z-20 absolute w-full px-2
+            group-hover:-translate-y-full group-hover:-mt-2 duration-300 text-center text-white z-20 absolute w-full px-2
           `}
         >
-          <p className="font-bold text-lg hover:text-orange-400 overflow-clip">{title}</p>
-          <p>{date ? date.split('-')[0] : 'Coming Soon'}</p>
+          <p className="font-bold text-sm md:text-md lg:text-lg hover:text-orange-400 overflow-clip">{title}</p>
+          <p className="text-sm md:text-md">{date ? date.split('-')[0] : 'Coming Soon'}</p>
           <Link to={`/${id}/${title.toLowerCase().replaceAll(' ', '-')}`} className="px-3 py-1 mt-1.5 text-sm bg-red-600 rounded-md hover:bg-white hover:text-black">Watch Now!</Link>
         </div>
         <div className="group-hover:-translate-y-36 duration-300 bg-slate-600 blur-2xl h-48 w-[480px] min-[2560px]:w-[600px] absolute z-10 -mx-16" />

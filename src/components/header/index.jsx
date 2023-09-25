@@ -1,13 +1,19 @@
 import React from 'react';
 import { FaSearch } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/images/logo.png';
 
 export default function Header() {
-  const [showSearchButton, setShowSearchButton] = React.useState(false);
+  const [search, setSearch] = React.useState('');
+  const navigate = useNavigate();
 
-  const handleClick = () => {
-    setShowSearchButton(!showSearchButton);
+  const handleOnChange = (e) => {
+    setSearch(e.target.value.replace(/ /g, '%20'));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate(`/?search=${search}`);
   };
 
   return (
@@ -22,19 +28,22 @@ export default function Header() {
         </Link>
       </div>
       <div className="flex items-center gap-1">
-        <div data-testid="searchbox" className="items-center rounded-md bg-gray-700 px-2 gap-1" style={{ display: showSearchButton ? 'none' : 'flex' }}>
-          <FaSearch className="text-white" />
-          <input
-            type="search"
-            name="search"
-            id="search"
-            placeholder="Search..."
-            className="px-1 py-0.5 border-0 items-center text-white w-40 focus:outline-none bg-gray-700"
-          />
-        </div>
-        <button type="button" data-testid="search-button" onClick={handleClick} className="block md:hidden">
-          <FaSearch size={20} />
-        </button>
+        <form action="#" onSubmit={handleSubmit}>
+          <div data-testid="searchbox" className="ms-3 md:ms-0 flex items-center rounded-md bg-gray-700 px-2 gap-1">
+            <FaSearch className="text-gray-500 hidden md:inline-block text-sm" />
+            <input
+              type="search"
+              name="search"
+              id="search"
+              placeholder="Search..."
+              className="px-1 py-0.5 border-0 items-center text-white w-24 md:w-40 focus:outline-none bg-gray-700"
+              onChange={handleOnChange}
+            />
+            <button type="submit">
+              <FaSearch className="text-white" />
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
