@@ -31,8 +31,8 @@ const upcomings = async (page = 1) => {
   return result;
 };
 
-const trendings = async () => {
-  const response = await axiosInstance.get('trending/movie/week');
+const trendings = async (page = 1) => {
+  const response = await axiosInstance.get(`trending/movie/week?page=${page}`);
   const result = await response.data;
   return result;
 };
