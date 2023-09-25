@@ -59,7 +59,7 @@ export default function Home() {
           </div>
         ) : (
           <img
-            src={`${process.env.REACT_APP_TMDB_IMAGE_BASE_URI}/${popularMovies2.data?.results[2]?.backdrop_path}`}
+            src={`${process.env.REACT_APP_TMDB_IMAGE_BASE_URI}/original/${popularMovies2.data?.results[2]?.backdrop_path}`}
             className="w-full h-[240px] md:h-[360px] lg:h-[400px] object-fit hover:scale-110 duration-500"
             alt="Banner"
           />

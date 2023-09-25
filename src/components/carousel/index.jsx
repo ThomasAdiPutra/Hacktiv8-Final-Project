@@ -30,7 +30,7 @@ export default function Carousel({ movies, loading }) {
     >
       {movies.map((movie, index) => (
         <div className="group" key={`${movies.id}-${index}`}>
-          <img src={`${process.env.REACT_APP_TMDB_IMAGE_BASE_URI}/${movie.backdrop_path}`} className="w-full h-[240px] md:h-[360px] lg:h-[500px] object-fit" alt={movie.title} />
+          <img src={`${process.env.REACT_APP_TMDB_IMAGE_BASE_URI}/original/${movie.backdrop_path}`} className="w-full h-[240px] md:h-[360px] lg:h-[500px] object-fit" alt={movie.title} />
           <div className="legend !bg-transparent !opacity-30 !text-left !top-0 !h-full !w-full flex flex-col justify-center gap-1 md:gap-3 md:mt-8 group-hover:!opacity-100">
             <p className="text-3xl md:text-5xl font-bold font-mono font-outline">{movie.title}</p>
             <p className="text-lg md:text-2xl">

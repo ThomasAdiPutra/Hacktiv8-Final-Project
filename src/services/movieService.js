@@ -58,7 +58,7 @@ const getVideos = async (id) => {
 const getImages = async (id) => {
   const response = await axiosInstance.get(`movie/${id}/images`);
   const result = await response.data;
-  return result.backdrops;
+  return result;
 };
 
 const getRecommendations = async (id, page = 1) => {
