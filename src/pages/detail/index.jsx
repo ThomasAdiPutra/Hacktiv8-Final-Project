@@ -1,7 +1,16 @@
+/* eslint-disable react/no-unknown-property */
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import StarRatings from 'react-star-ratings';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import LightGallery from 'lightgallery/react';
+import lgThumbnail from 'lightgallery/plugins/thumbnail';
+import lgZoom from 'lightgallery/plugins/zoom';
+import 'lightgallery/css/lightgallery.css';
+import 'lightgallery/css/lg-zoom.css';
+import 'lightgallery/css/lg-thumbnail.css';
 import {
   getCredits,
   getImages,
@@ -13,6 +22,33 @@ import Category from '../../components/category';
 
 export default function Detail() {
   const { id: movieId } = useParams();
+
+  const breakpoints = {
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 10,
+    },
+    375: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    500: {
+      slidesPerView: 3,
+      spaceBetween: 30,
+    },
+    1366: {
+      slidesPerView: 4,
+      spaceBetween: 30,
+    },
+    1441: {
+      slidesPerView: 5,
+      spaceBetween: 30,
+    },
+    1920: {
+      slidesPerView: 6,
+      spaceBetween: 30,
+    },
+  };
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['movie', movieId],
@@ -114,15 +150,15 @@ export default function Detail() {
     <div
       className="!bg-cover flex-1 flex flex-col -mb-5"
       style={{
-        background: `url('${process.env.REACT_APP_TMDB_IMAGE_BASE_URI}/${data.backdrop_path}')`,
+        background: `url('${process.env.REACT_APP_TMDB_IMAGE_BASE_URI}/original/${data.backdrop_path}')`,
       }}
     >
       <div className="flex-1 bg-black bg-opacity-75 p-5 md:px-16 lg:px-36 md:py-8 lg:py-16">
         <div className="overflow-auto flex flex-col lg:flex-row gap-5 md:gap-6 lg:gap-12">
           <img
-            src={`${process.env.REACT_APP_TMDB_IMAGE_BASE_URI}/${data.poster_path}`}
+            src={`${process.env.REACT_APP_TMDB_IMAGE_BASE_URI}/original/${data.poster_path}`}
             onError={(e) => {
-              e.src = `${process.env.REACT_APP_TMDB_IMAGE_BASE_URI}/${data.backdrop_path}`;
+              e.src = `${process.env.REACT_APP_TMDB_IMAGE_BASE_URI}/original/${data.backdrop_path}`;
             }}
             alt={data.title}
             className="max-h-[360px] md:max-h-[480px] rounded-xl shadow-xl float-left"
@@ -213,15 +249,30 @@ export default function Detail() {
               </svg>
             </div>
           ) : (
-            <div className="flex flex-wrap justify-around gap-3 mt-5">
-              {images.data.slice(0, 6).map((image) => (
-                <img
-                  key={image.file_path}
-                  src={`${process.env.REACT_APP_TMDB_IMAGE_BASE_URI}/${image.file_path}`}
-                  className="h-16 md:h-24 lg:h-32 rounded-xl shadow-xl"
-                  alt={data.title}
-                />
-              ))}
+            <div className="mt-5">
+              <Swiper
+                breakpoints={breakpoints}
+              >
+                {
+                  images.data?.backdrops?.slice(0, 10).map((image, index) => (
+                    <SwiperSlide key={`${image.id}-${index}`} className="!block w-12">
+                      <LightGallery
+                        speed={500}
+                        plugins={[lgThumbnail, lgZoom]}
+                        galleryId={`gallery-${index}`}
+                      >
+                        <a href={`${process.env.REACT_APP_TMDB_IMAGE_BASE_URI}/original${image.file_path}`}>
+                          <img
+                            alt={data.title}
+                            src={`${process.env.REACT_APP_TMDB_IMAGE_BASE_URI}/w300${image.file_path}`}
+                            className="rounded-xl"
+                          />
+                        </a>
+                      </LightGallery>
+                    </SwiperSlide>
+                  ))
+                }
+              </Swiper>
             </div>
           )}
         </div>
