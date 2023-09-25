@@ -142,7 +142,7 @@ export default function Detail() {
                 <span>|</span>
                 <span>{data.genres.map((genre) => genre.name).join(', ')}</span>
               </div>
-              <div className="my-2">
+              <div className="my-2 flex items-end">
                 <StarRatings
                   rating={data.vote_average}
                   numberOfStars={10}
@@ -151,6 +151,11 @@ export default function Detail() {
                   starDimension="20px"
                   starSpacing="2px"
                 />
+                <div className="ms-2 -mb-0.5">
+                  (
+                  {data.vote_average}
+                  )
+                </div>
               </div>
               <p className="mt-5 text-white text-lg">{data.overview}</p>
             </div>
