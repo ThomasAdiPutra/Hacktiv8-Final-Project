@@ -31,7 +31,7 @@ export default function Movie({
           <p className="text-sm md:text-md">{date ? date.split('-')[0] : 'Coming Soon'}</p>
           <Link to={`/${id}/${title.toLowerCase().replaceAll(' ', '-')}`} className="px-3 py-1 mt-1.5 text-sm bg-red-600 rounded-md hover:bg-white hover:text-black">Watch Now!</Link>
         </div>
-        <div className="group-hover:-translate-y-36 duration-300 bg-slate-600 blur-2xl h-48 w-[480px] min-[2560px]:w-[600px] absolute z-10 -mx-16" />
+        <div className="group-hover:-translate-y-24 md:group-hover:-translate-y-36 duration-300 bg-slate-600 blur-2xl h-48 w-[480px] min-[2560px]:w-[600px] absolute z-10 -mx-16" />
       </div>
     </div>
   );
