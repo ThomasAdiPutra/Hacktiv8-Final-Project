@@ -31,8 +31,8 @@ const upcomings = async (page = 1) => {
   return result;
 };
 
-const trendings = async () => {
-  const response = await axiosInstance.get('trending/movie/week');
+const trendings = async (page = 1) => {
+  const response = await axiosInstance.get(`trending/movie/week?page=${page}`);
   const result = await response.data;
   return result;
 };
@@ -75,6 +75,14 @@ const getCredits = async (id) => {
   return result;
 };
 
+const search = async (query, page = 1) => {
+  const response = await axiosInstance.get(
+    `search/movie?query=${query}&page=${page}`,
+  );
+  const result = await response.data;
+  return result;
+};
+
 export {
   nowPlayings,
   populars,
@@ -87,4 +95,5 @@ export {
   getImages,
   getRecommendations,
   getCredits,
+  search,
 };
