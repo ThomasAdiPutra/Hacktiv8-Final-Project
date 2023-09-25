@@ -68,7 +68,7 @@ export default function Category() {
           dataLength={data.pages.length * 20}
           next={fetchNextPage}
           hasMore={hasNextPage || false}
-          className="flex justify-center flex-wrap gap-3"
+          className="flex justify-center flex-wrap gap-3 min-[2560px]:gap-9"
           scrollThreshold={0.5}
           loader={(
             <div className="flex justify-center flex-wrap gap-3">

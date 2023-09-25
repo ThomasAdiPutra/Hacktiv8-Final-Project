@@ -60,7 +60,11 @@ export default function Category({
           <p className="bg-gray-700 px-3 py-1 rounded-full animate-pulse h-10 w-64" />
           <div className="flex gap-2">
             <button type="button" className="bg-gray-700 px-3 py-1 rounded-md animate-pulse h-7 w-5"> </button>
-            <button type="button" className="bg-gray-700 px-3 py-1 rounded-md animate-pulse h-7 w-16"> </button>
+            {
+              link && (
+                <button type="button" className="bg-gray-700 px-3 py-1 rounded-md animate-pulse h-7 w-12 md:w-16"> </button>
+              )
+            }
             <button type="button" className="bg-gray-700 px-3 py-1 rounded-md animate-pulse h-7 w-5"> </button>
           </div>
         </div>
@@ -90,14 +94,18 @@ export default function Category({
           <button type="button" className="text-white text-md xl:text-xl bg-gray-700 px-3 py-1 rounded-md hover:bg-red-600" onClick={handlePrevSlide}>
             <FaArrowLeft />
           </button>
-          <Link
-            to={link}
-            className="text-white text-md xl:text-xl bg-gray-700 px-3 py-1 rounded-md hover:bg-red-600"
-          >
-            See all
-          </Link>
-          <button type="button" className="text-white text-md xl:text-xl bg-gray-700 px-3 py-1 rounded-md hover:bg-red-600" onClick={handleNextSlide}>
-            <FaArrowRight />
+          {
+            link && (
+              <Link
+                to={link}
+                className="text-white text-sm md:text-md xl:text-xl bg-gray-700 px-1.5 md:px-3 py-1 rounded-md hover:bg-red-600"
+              >
+                See all
+              </Link>
+            )
+          }
+          <button type="button" className="text-white text-md xl:text-xl bg-gray-700 px-1.5 md:px-3 py-1 rounded-md hover:bg-red-600" onClick={handleNextSlide}>
+            <FaArrowRight className="text-sm md:text-md" />
           </button>
         </div>
       </div>
