@@ -20,7 +20,14 @@ export default function Movie({
 
   return (
     <div className="h-[210px] w-[140px] md:h-[263px] md:w-[175px] lg:h-[365px] lg:w-[243px] min-[2560px]:w-[300px] min-[2560px]:h-[500px] rounded-xl overflow-hidden group">
-      <img src={`${process.env.REACT_APP_TMDB_IMAGE_BASE_URI}/${poster}`} className="h-full w-full object-cover z-10 group-hover:scale-125 duration-500" alt={title} />
+      <img
+        src={`${process.env.REACT_APP_TMDB_IMAGE_BASE_URI}/${poster}`}
+        className="h-full w-full object-cover z-10 group-hover:scale-125 duration-500"
+        alt={title}
+        onError={(e) => {
+          e.target.src = 'https://via.placeholder.com/300x450/000000/FFFFFF/?text=Image+Not+Found';
+        }}
+      />
       <div className="relative text-center w-[140px] md:w-[175px] lg:w-[243px] min-[2560px]:w-[300px]">
         <div
           className={`
