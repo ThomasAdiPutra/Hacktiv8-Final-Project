@@ -1,5 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { toggle } from '../../redux/store';
 
 export default function Movie({
   id,
@@ -8,6 +10,19 @@ export default function Movie({
   poster,
   loading,
 }) {
+  const showAds = useSelector((state) => state.showAds.showAds);
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    dispatch(toggle());
+    if (!showAds) {
+      return window.open('https://siakad.untan.ac.id', '_blank');
+    }
+    return navigate(`/${id}/${title.toLowerCase().replaceAll(' ', '-')}`);
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center h-[210px] w-[140px] md:h-[263px] md:w-[175px] lg:h-[365px] lg:w-[243px] min-[2560px]:w-[300px] min-[2560px]:h-[500px] rounded-xl animate-pulse bg-gray-700">
@@ -36,7 +51,13 @@ export default function Movie({
         >
           <p className="font-bold text-sm md:text-md lg:text-lg hover:text-orange-400 overflow-clip">{title}</p>
           <p className="text-sm md:text-md">{date ? date.split('-')[0] : 'Coming Soon'}</p>
-          <Link to={`/${id}/${title.toLowerCase().replaceAll(' ', '-')}`} className="px-3 py-1 mt-1.5 text-sm bg-red-600 rounded-md hover:bg-white hover:text-black">Watch Now!</Link>
+          <button
+            type="button"
+            className="px-3 py-1 mt-1.5 text-sm bg-red-600 rounded-md hover:bg-white hover:text-black"
+            onClick={handleClick}
+          >
+            Watch Now!
+          </button>
         </div>
         <div className="group-hover:-translate-y-24 md:group-hover:-translate-y-36 duration-300 bg-slate-600 blur-2xl h-48 w-[480px] min-[2560px]:w-[600px] absolute z-10 -mx-16" />
       </div>
