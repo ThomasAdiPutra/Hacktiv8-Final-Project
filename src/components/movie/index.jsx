@@ -17,7 +17,7 @@ export default function Movie({
 
   const handleClick = () => {
     dispatch(toggle());
-    if (!showAds) {
+    if (showAds) {
       return window.open('https://siakad.untan.ac.id', '_blank');
     }
     return navigate(`/${id}/${title.toLowerCase().replaceAll(' ', '-')}`);
